@@ -1,4 +1,4 @@
 # AngularAirbnb
 
 Just initialized
-Todo: Fix appropriate README.file
+- Todo: Fix appropriate README.file
