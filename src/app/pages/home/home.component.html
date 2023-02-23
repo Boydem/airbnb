@@ -1,0 +1,12 @@
+<filters-bar></filters-bar>
+
+<ng-container *ngIf="listViewMode; else mapMode">
+  <stay-list></stay-list>
+</ng-container>
+<ng-template #mapMode>
+  <stay-list-map></stay-list-map>
+</ng-template>
+
+<button (click)="listViewMode = !listViewMode">
+  {{ listViewMode ? "Show Map" : "Show List" }}
+</button>
