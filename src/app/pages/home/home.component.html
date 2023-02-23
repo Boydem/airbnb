@@ -1,7 +1,7 @@
 <filters-bar></filters-bar>
 
 <ng-container *ngIf="listViewMode; else mapMode">
-  <stay-list></stay-list>
+  <stay-list [stays]="stays$ | async"></stay-list>
 </ng-container>
 <ng-template #mapMode>
   <stay-list-map></stay-list-map>
