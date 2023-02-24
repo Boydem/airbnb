@@ -21,7 +21,7 @@ export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
   @ViewChild('carouselContainer') carouselContainer!: ElementRef;
 
   currentIndex: number = 0;
-  isTransitioning = false;
+  isScrolling = false;
   elCarouselContainer!: HTMLElement;
 
   ngAfterViewInit(): void {
@@ -47,8 +47,8 @@ export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
   };
 
   goToNextOrPrev(isNext: boolean) {
-    if (this.isTransitioning) return;
-    this.isTransitioning = true;
+    if (this.isScrolling) return;
+    this.isScrolling = true;
 
     this.removeScrollEventListener(); // remove scroll event listener before scrolling
     const itemWidth = this.elCarouselContainer.offsetWidth;
@@ -61,14 +61,14 @@ export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
     });
 
     setTimeout(() => {
-      this.isTransitioning = false;
+      this.isScrolling = false;
       this.addScrollEventListener(); // re-attach scroll event listener after scrolling
     }, 250);
   }
 
   goToIndex(index: number) {
-    if (this.isTransitioning) return;
-    this.isTransitioning = true;
+    if (this.isScrolling) return;
+    this.isScrolling = true;
 
     this.removeScrollEventListener(); // remove scroll event listener before scrolling
     const itemWidth = this.elCarouselContainer.offsetWidth;
@@ -80,7 +80,7 @@ export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
     });
 
     setTimeout(() => {
-      this.isTransitioning = false;
+      this.isScrolling = false;
       this.addScrollEventListener(); // re-attach scroll event listener after scrolling
     }, 250);
   }

@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppHeaderComponent {
   isExpanded: boolean = false;
+  // TODO : Make a store with ngRx , and import the filterBy
+  //        or have the filterBy from an ovservable , see if it apply changes to the index
+  //        it should actually , then why using ngrx ? check it out
 }

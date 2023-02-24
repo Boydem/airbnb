@@ -2,7 +2,7 @@
 
 .search-teaser {
   border: 1px solid $gray-D;
-  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  padding: 0.66rem 1rem 0.66rem 1.5rem;
   border-radius: 55px;
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   cursor: pointer;
@@ -14,7 +14,7 @@
     outline: 0;
     background-color: #fff;
     &.divider {
-      border-inline-end: 1px solid $gray-F;
+      box-shadow: 1px 0px 0px 0px $gray-E;
       padding-inline-end: 0.5rem;
     }
   }

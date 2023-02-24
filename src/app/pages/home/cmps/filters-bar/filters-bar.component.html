@@ -1,1 +1,10 @@
-<p>filters-bar works!</p>
+<div class="filters">
+  <div class="filter-widget" *ngFor="let filter of filters$ | async">
+    <img [src]="filter.img" alt="" />
+    <p>{{ filter.title }}</p>
+  </div>
+</div>
+
+<button (click)="isModalOpen = true" class="filters-modal-btn">Filters</button>
+
+<!-- <div class="filters-modal"></div> // consider making seperate cmp for that probs you should -->

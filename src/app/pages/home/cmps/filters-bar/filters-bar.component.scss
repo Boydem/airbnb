@@ -1,0 +1,44 @@
+@import "../../../../../assets/styles/setup/vars";
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 3rem;
+  align-items: center;
+  //   max-width: 100%;
+  > button {
+  }
+}
+
+.filters {
+  max-width: 1000px;
+  flex: 1;
+  display: flex;
+  overflow-x: scroll;
+  position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .filter-widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &:first-child {
+      padding: 1.5rem 1.5rem 1.5rem 0;
+    }
+    &:not(:first-child) {
+      padding: 1.5rem;
+    }
+    img {
+      margin-bottom: 0.5rem;
+      max-width: 22px;
+    }
+    p {
+      min-width: max-content;
+      color: $gray-700;
+      font-size: 0.85em;
+    }
+  }
+}
