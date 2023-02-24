@@ -2,13 +2,21 @@
   <li *ngFor="let imgUrl of imgUrls" class="carousel-item">
     <img [src]="imgUrl" class="carousel-image" />
   </li>
-  <button (click)="goToPrev()" class="arrow-left">
-    <fa-icon [icon]="faChevronLeft"></fa-icon>
-  </button>
-  <button (click)="goToNext()" class="arrow-right">
-    <fa-icon [icon]="faChevronRight"></fa-icon>
-  </button>
 </ul>
+<button
+  (click)="goToNextOrPrev(false)"
+  class="arrow-left"
+  [ngClass]="{ disabled: currentIndex === 0 }"
+>
+  <fa-icon size="xs" [icon]="faChevronLeft"></fa-icon>
+</button>
+<button
+  (click)="goToNextOrPrev(true)"
+  class="arrow-right"
+  [ngClass]="{ disabled: currentIndex === imgUrls.length - 1 }"
+>
+  <fa-icon size="xs" [icon]="faChevronRight"></fa-icon>
+</button>
 <div class="dots-pagination">
   <span
     *ngFor="let imgUrl of imgUrls; let i = index"

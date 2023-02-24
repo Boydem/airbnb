@@ -1,13 +1,28 @@
+@import "../../../../../assets/styles/setup/vars";
 .stay-preview {
   .meta {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "row1 rate"
+      "row2 rate"
+      "row3 rate";
+    gap: 2px 1rem;
+    justify-content: space-between;
+    .rate {
+      grid-area: rate;
+    }
     .name {
+      grid-area: row1;
     }
     .type {
+      grid-area: row2;
+      color: $gray-700;
     }
     .price {
+      grid-area: row3;
+      margin-top: 0.5rem;
       .price-suffix {
         font-weight: 100;
       }
