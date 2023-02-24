@@ -15,7 +15,19 @@ export class ImgCarouselComponent implements OnInit {
   currentIndex: number = 0;
   isTransitioning = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.addScrollEventListener();
+  }
+
+  addScrollEventListener() {
+    const carouselContainer = this.carouselContainer.nativeElement;
+    carouselContainer.addEventListener('scroll', () => {
+      const itemWidth = carouselContainer.offsetWidth;
+      const itemCount = carouselContainer.children.length;
+      const currentIndex = Math.round(carouselContainer.scrollLeft / itemWidth);
+      this.currentIndex = (currentIndex + itemCount) & itemCount;
+    });
+  }
 
   goToNextOrPrev(isNext: boolean) {
     if (this.isTransitioning) return;
