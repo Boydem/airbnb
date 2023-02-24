@@ -1,11 +1,11 @@
 <article class="stay-preview">
   <img-carousel [imgUrls]="stay.imgUrls"></img-carousel>
   <section class="meta">
-    <h4 class="name">{{ stay.name }}</h4>
+    <p class="name font-medium">{{ stay.name }}</p>
     <p class="type">{{ stay.type }}</p>
-    <h4 class="price">
+    <p class="price font-medium">
       ${{ stay.price }}
-      <span class="price-suffix">night</span>
-    </h4>
+      <span class="price-suffix font-base">night</span>
+    </p>
   </section>
 </article>

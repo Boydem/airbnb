@@ -9,7 +9,7 @@
     background-color: white;
     z-index: 2;
     border-bottom: 1px solid $gray-F;
-    // header bg-color extension when expanded as ::before
+    // Header bg-color extension when expanded as ::before
     &::before {
       content: "";
       width: 100%;
@@ -27,6 +27,10 @@
         transition: 0.5s all $ease-in-out;
         height: 200%;
       }
+    }
+    // Header content
+    .content-wrapper {
+      padding: 1rem 0;
     }
   }
   overlay-screen {

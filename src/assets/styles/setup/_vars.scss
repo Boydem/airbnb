@@ -7,9 +7,9 @@ $gray-500: #515151;
 $gray-600: #616161;
 $gray-700: #717171;
 $gray-B: #b0b0b0;
-$gray-D: #d0d0d0;
-$gray-E: #e0e0e0;
-$gray-F: #f0f0f0;
+$gray-D: #dddddd;
+$gray-E: #ebebeb;
+$gray-F: #f7f7f7;
 
 $primary: #ff385c;
 $primary-highlighted: #e00b41;
@@ -30,7 +30,11 @@ $brand-gradient: radial-gradient(
 $base-font-family: "Cereal-Book", Arial, Helvetica, sans-serif;
 $base-font-size: 15px;
 $base-font-ratio: 1.43;
-$base-text-color: #222;
+$base-text-color: rgb(34, 34, 34);
+
+// FONT VARS
+$font-family-medium: "Cereal-Medium", Arial, Helvetica, sans-serif;
+$font-family-bold: "Cereal-Bold", Arial, Helvetica, sans-serif;
 
 // FIXED SIZES
 $header-height-desktop: 80px;

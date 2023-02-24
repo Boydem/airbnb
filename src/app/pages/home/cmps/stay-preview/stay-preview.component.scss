@@ -1,12 +1,15 @@
 .stay-preview {
   .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
     .name {
     }
     .type {
     }
     .price {
       .price-suffix {
-        font-weight: 300;
+        font-weight: 100;
       }
     }
   }
