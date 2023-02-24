@@ -1,36 +1,31 @@
 @import "../../../../../assets/styles/setup/vars";
 
 :host {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  gap: 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
   align-items: center;
-  //   max-width: 100%;
-  > button {
-  }
+  padding: 2rem 0 1rem;
 }
 
 .filters {
-  max-width: 1000px;
   flex: 1;
   display: flex;
+  gap: 3rem;
   overflow-x: scroll;
   position: relative;
+  padding-inline-end: 3rem;
   &::-webkit-scrollbar {
     display: none;
   }
   .filter-widget {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    &:first-child {
-      padding: 1.5rem 1.5rem 1.5rem 0;
-    }
-    &:not(:first-child) {
-      padding: 1.5rem;
-    }
+    transition: 0.2s all ease;
+    padding-bottom: 1rem;
     img {
       margin-bottom: 0.5rem;
       max-width: 22px;
@@ -40,5 +35,56 @@
       color: $gray-700;
       font-size: 0.85em;
     }
+    &:hover {
+      p {
+        color: $base-text-color;
+      }
+      box-shadow: inset 0px -2px 0px 0px $gray-D;
+    }
   }
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    background: linear-gradient(to right, #ffffff00, rgb(255, 255, 255));
+    height: 100%;
+    width: 12rem;
+    pointer-events: none;
+  }
+
+  .next-filters-btn {
+    cursor: pointer;
+    position: absolute;
+    z-index: 3;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 55px;
+    border: 1px solid $gray-D;
+    background-color: #fff;
+    transition: transform 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+}
+
+.filters-modal-btn {
+  all: unset;
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid $gray-D;
+  border-radius: 12px;
+  margin: 0;
+  height: 100%;
+  padding: 0 1rem;
+  font-size: 12px;
+  color: $gray-300;
+  font-weight: 600;
 }

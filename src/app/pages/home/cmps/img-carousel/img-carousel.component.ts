@@ -82,7 +82,7 @@ export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       this.isScrolling = false;
       this.addScrollEventListener(); // re-attach scroll event listener after scrolling
-    }, 250);
+    }, 1000);
   }
   ngOnDestroy(): void {
     this.removeScrollEventListener();

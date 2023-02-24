@@ -1,10 +1,16 @@
 <div class="filters">
   <div class="filter-widget" *ngFor="let filter of filters$ | async">
-    <img [src]="filter.img" alt="" />
+    <img [src]="filter.img" [alt]="filter.title" />
     <p>{{ filter.title }}</p>
   </div>
+  <button (click)="onNextFilters()" class="next-filters-btn">
+    <fa-icon [icon]="faChevronRight" size="sm"></fa-icon>
+  </button>
 </div>
 
-<button (click)="isModalOpen = true" class="filters-modal-btn">Filters</button>
+<button (click)="isModalOpen = true" class="filters-modal-btn">
+  <fa-icon [icon]="faFilter"></fa-icon>
+  Filters
+</button>
 
 <!-- <div class="filters-modal"></div> // consider making seperate cmp for that probs you should -->

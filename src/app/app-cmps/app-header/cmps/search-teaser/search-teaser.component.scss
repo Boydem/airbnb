@@ -2,7 +2,7 @@
 
 .search-teaser {
   border: 1px solid $gray-D;
-  padding: 0.66rem 1rem 0.66rem 1.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 55px;
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   cursor: pointer;
@@ -13,6 +13,7 @@
     border: 0;
     outline: 0;
     background-color: #fff;
+    color: $gray-200;
     &.divider {
       box-shadow: 1px 0px 0px 0px $gray-E;
       padding-inline-end: 0.5rem;
@@ -47,37 +48,5 @@
     &.circled {
       border-radius: 100px;
     }
-
-    // &.small,
-    // &.large {
-    //   > svg {
-    //     display: block;
-    //     fill: none;
-    //     stroke: currentcolor;
-    //     overflow: visible;
-    //   }
-    // }
-    // &.large {
-    //   padding: 14px;
-    //   > svg {
-    //     display: block;
-    //     fill: white;
-    //     height: 20px;
-    //     width: 20px;
-    //     stroke: currentcolor;
-    //     // stroke-width: 1.01;
-    //     overflow: visible;
-    //   }
-    // }
-    // &.small {
-    //   padding: 10px;
-    //   > svg {
-    //     height: 14px;
-    //     width: 14px;
-    //     stroke-width: 2.01;
-    //   }
-    // }
-    // &.medium {
-    // }
   }
 }
