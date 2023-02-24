@@ -1,12 +1,20 @@
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'img-carousel',
   templateUrl: './img-carousel.component.html',
   styleUrls: ['./img-carousel.component.scss'],
 })
-export class ImgCarouselComponent implements OnInit {
+export class ImgCarouselComponent implements AfterViewInit, OnDestroy {
   faChevronRight = faChevronRight;
   faChevronLeft = faChevronLeft;
   @Input() imgUrls!: string[];
@@ -14,51 +22,69 @@ export class ImgCarouselComponent implements OnInit {
 
   currentIndex: number = 0;
   isTransitioning = false;
+  elCarouselContainer!: HTMLElement;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.elCarouselContainer = this.carouselContainer.nativeElement;
     this.addScrollEventListener();
   }
 
   addScrollEventListener() {
-    const carouselContainer = this.carouselContainer.nativeElement;
-    carouselContainer.addEventListener('scroll', () => {
-      const itemWidth = carouselContainer.offsetWidth;
-      const itemCount = carouselContainer.children.length;
-      const currentIndex = Math.round(carouselContainer.scrollLeft / itemWidth);
-      this.currentIndex = (currentIndex + itemCount) & itemCount;
-    });
+    this.elCarouselContainer.addEventListener('scroll', this.handleScroll);
   }
+
+  removeScrollEventListener() {
+    this.elCarouselContainer.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const itemWidth = this.elCarouselContainer.offsetWidth;
+    const itemCount = this.elCarouselContainer.children.length;
+    const currentIndex = Math.round(
+      this.elCarouselContainer.scrollLeft / itemWidth
+    );
+    this.currentIndex = (currentIndex + itemCount) % itemCount;
+  };
 
   goToNextOrPrev(isNext: boolean) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
-    const carouselContainer = this.carouselContainer.nativeElement;
-    const itemWidth = carouselContainer.offsetWidth;
-    const itemCount = carouselContainer.children.length;
+
+    this.removeScrollEventListener(); // remove scroll event listener before scrolling
+    const itemWidth = this.elCarouselContainer.offsetWidth;
+    const itemCount = this.elCarouselContainer.children.length;
     this.currentIndex =
       (this.currentIndex + (isNext ? 1 : -1) + itemCount) % itemCount;
-    carouselContainer.scroll({
+
+    this.elCarouselContainer.scroll({
       left: itemWidth * this.currentIndex,
-      behavior: 'smooth',
     });
+
     setTimeout(() => {
       this.isTransitioning = false;
+      this.addScrollEventListener(); // re-attach scroll event listener after scrolling
     }, 250);
   }
 
   goToIndex(index: number) {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
-    const carouselContainer = this.carouselContainer.nativeElement;
-    const itemWidth = carouselContainer.offsetWidth;
-    const itemCount = carouselContainer.children.length;
+
+    this.removeScrollEventListener(); // remove scroll event listener before scrolling
+    const itemWidth = this.elCarouselContainer.offsetWidth;
+    const itemCount = this.elCarouselContainer.children.length;
     this.currentIndex = (index + itemCount) % itemCount;
-    carouselContainer.scroll({
+
+    this.elCarouselContainer.scroll({
       left: itemWidth * this.currentIndex,
-      behavior: 'smooth',
     });
+
     setTimeout(() => {
       this.isTransitioning = false;
+      this.addScrollEventListener(); // re-attach scroll event listener after scrolling
     }, 250);
+  }
+  ngOnDestroy(): void {
+    this.removeScrollEventListener();
   }
 }
