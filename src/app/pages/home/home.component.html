@@ -4,9 +4,10 @@
   <stay-list [stays]="stays$ | async"></stay-list>
 </ng-container>
 <ng-template #mapMode>
-  <stay-list-map></stay-list-map>
+  <stay-list-map [stays]="stays$ | async"></stay-list-map>
 </ng-template>
 
 <button (click)="listViewMode = !listViewMode">
+  <fa-icon [icon]="listViewMode ? faMap : faList"></fa-icon>
   {{ listViewMode ? "Show Map" : "Show List" }}
 </button>

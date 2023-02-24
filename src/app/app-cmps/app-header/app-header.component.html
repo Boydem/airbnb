@@ -1,1 +1,11 @@
-<p>app-header works!</p>
+<overlay-screen
+  (click)="isExpanded = false"
+  [isOpen]="isExpanded"
+></overlay-screen>
+
+<header class="app-header main-layout" [class.expanded]="isExpanded">
+  <app-logo></app-logo>
+  <search-teaser (click)="isExpanded = true"></search-teaser>
+  <user-menu></user-menu>
+  <search-expanded *ngIf="isExpanded"></search-expanded>
+</header>

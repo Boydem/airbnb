@@ -1,3 +1,5 @@
-<ul *ngFor="let stay of stays" class="stay-list">
-  <stay-preview [stay]="stay"></stay-preview>
+<ul class="stay-list clean-list">
+  <li *ngFor="let stay of stays">
+    <stay-preview [stay]="stay"></stay-preview>
+  </li>
 </ul>

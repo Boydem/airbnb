@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
 })
-export class AppHeaderComponent {}
+export class AppHeaderComponent {
+  isExpanded: boolean = false;
+}
