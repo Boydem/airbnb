@@ -1,11 +1,16 @@
 @import "../../../../../assets/styles/setup/vars";
 
 :host {
+  position: sticky;
+  top: calc(80px);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   align-items: center;
-  padding: 2rem 0 1rem;
+  padding: 1rem 0;
+  margin: 1rem 0;
+  background-color: #fff;
+  z-index: 1;
 }
 
 .filters {
@@ -13,6 +18,7 @@
   display: flex;
   gap: 3rem;
   overflow-x: scroll;
+  overflow-y: hidden;
   position: relative;
   padding-inline-end: 3rem;
   &::-webkit-scrollbar {
@@ -25,7 +31,16 @@
     align-items: center;
     flex-direction: column;
     transition: 0.2s all ease;
-    padding-bottom: 1rem;
+    position: relative;
+    &::after {
+      content: "";
+      width: 100%;
+      position: absolute;
+      bottom: -0.5rem;
+      z-index: 2;
+      background-color: red;
+      height: 2px;
+    }
     img {
       margin-bottom: 0.5rem;
       max-width: 22px;
@@ -39,7 +54,8 @@
       p {
         color: $base-text-color;
       }
-      box-shadow: inset 0px -2px 0px 0px $gray-D;
+      &::before {
+      }
     }
   }
   &::after {
