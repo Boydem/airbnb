@@ -1,5 +1,5 @@
 <div
-  [class.active]="activeModule === 'start-date'"
+  [ngClass]="{ active: activeModule === 'start-date' }"
   (click)="onChangeModule('start-date')"
   class="filter-module"
 >
@@ -16,7 +16,7 @@
   </button>
 </div>
 <div
-  [class.active]="activeModule === 'end-date'"
+  [ngClass]="{ active: activeModule === 'end-date' }"
   (click)="onChangeModule('end-date')"
   class="filter-module"
 >
@@ -50,12 +50,12 @@
         <span
           *ngFor="let day of startMonthDays; let i = index"
           class="day"
-          [class.empty]="day.day === null"
-          [class.active]="i === selectedStartDate.getDate() - 1"
-          [class.in-range]="
-            isInRange(i + 1, startMonth, startYear, endMonth, endYear)
-          "
-          (click)="selectDate(i + 1, true)"
+          [ngClass]="{
+            empty: day.day === null,
+            active: isDayActive(day.day, startMonth, startYear),
+            'in-range': isDayInRange(day.day, startMonth, startYear)
+          }"
+          (click)="selectDate(day.day, startMonth, startYear)"
         >
           {{ day.day === null || day.day === 0 ? "" : day.day }}
         </span>
@@ -74,12 +74,12 @@
         <span
           *ngFor="let day of endMonthDays; let i = index"
           class="day"
-          [class.empty]="day.day === null"
-          [class.active]="i === selectedEndDate.getDate() - 1"
-          [class.in-range]="
-            isInRange(i + 1, startMonth, startYear, endMonth, endYear)
-          "
-          (click)="selectDate(i + 1, false)"
+          [ngClass]="{
+            empty: day.day === null,
+            active: isDayActive(day.day, endMonth, endYear),
+            'in-range': isDayInRange(day.day, endMonth, endYear)
+          }"
+          (click)="selectDate(day.day, endMonth, endYear)"
         >
           {{ day.day === null || day.day === 0 ? "" : day.day }}
         </span>
