@@ -118,6 +118,7 @@ export class FilterDatepickerComponent implements OnInit {
   }
 
   selectDate(day: number, month: number, year: number) {
+    if (this.isDisabled(day, month, year)) return;
     const date = new Date(year, month, day);
     if (
       this.activeModule === 'start-date' &&
@@ -200,6 +201,12 @@ export class FilterDatepickerComponent implements OnInit {
     const endDate = this.selectedEndDate?.setHours(0, 0, 0, 0);
 
     return date === startDate || date === endDate;
+  }
+
+  isDisabled(day: number, month: number, year: number): boolean {
+    const today = new Date();
+    const selectedDate = new Date(year, month, day);
+    return selectedDate < today;
   }
 
   calculateStartMonth() {

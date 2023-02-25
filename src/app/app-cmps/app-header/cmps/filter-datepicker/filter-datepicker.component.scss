@@ -3,7 +3,7 @@
 .date-range-picker {
   .date-picker-container {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.5rem);
     left: 0;
     z-index: 1;
     width: 100%;
@@ -16,7 +16,7 @@
     flex-wrap: wrap;
     opacity: 1;
     transition: all 0.3s;
-    border-radius: 1rem;
+    border-radius: 2rem;
     &.show {
       visibility: visible;
       opacity: 1;
@@ -102,10 +102,15 @@
             opacity: 0.5;
             cursor: default;
           }
-          &:hover {
+          &:hover:not(.disabled) {
             &::before {
               border: 1px solid $base-text-color;
             }
+          }
+
+          &.disabled {
+            color: $gray-B;
+            cursor: default;
           }
 
           &.active {

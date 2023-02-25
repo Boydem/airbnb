@@ -51,7 +51,7 @@
           *ngFor="let day of startMonthDays; let i = index"
           class="day"
           [ngClass]="{
-            disabled: day,
+            disabled: isDisabled(day, startMonth, startYear),
             empty: day === null,
             active: isDayActive(day, startMonth, startYear),
             'in-range': isDayInRange(day, startMonth, startYear)
@@ -76,6 +76,7 @@
           *ngFor="let day of endMonthDays; let i = index"
           class="day"
           [ngClass]="{
+            disabled: isDisabled(day, endMonth, endYear),
             empty: day === null,
             active: isDayActive(day, endMonth, endYear),
             'in-range': isDayInRange(day, endMonth, endYear)
