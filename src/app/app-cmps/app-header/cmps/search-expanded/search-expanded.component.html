@@ -5,7 +5,10 @@
     (click)="onChangeModule('location')"
   ></filter-location>
 
-  <filter-datepicker></filter-datepicker>
+  <filter-datepicker
+    [activeModule]="activeModule"
+    (changeModule)="onChangeModule($event)"
+  ></filter-datepicker>
 
   <div
     [class.active]="activeModule === 'guests'"

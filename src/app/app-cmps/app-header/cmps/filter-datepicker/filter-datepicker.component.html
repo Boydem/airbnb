@@ -1,11 +1,19 @@
-<div class="filter-module">
+<div
+  [class.active]="activeModule === 'date-check-in'"
+  (click)="onChangeModule('date-check-in')"
+  class="filter-module"
+>
   <h5 class="filter-title">Check in</h5>
   <h4 class="filter-selection">Mar 2</h4>
   <button class="filter-reset-btn">
     <fa-icon size="xs" [icon]="faX"></fa-icon>
   </button>
 </div>
-<div class="filter-module">
+<div
+  [class.active]="activeModule === 'date-check-out'"
+  (click)="onChangeModule('date-check-out')"
+  class="filter-module"
+>
   <h5 class="filter-title">Check out</h5>
   <h4 class="filter-selection">Mar 10</h4>
   <button class="filter-reset-btn">
