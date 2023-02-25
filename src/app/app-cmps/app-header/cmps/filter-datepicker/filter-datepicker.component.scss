@@ -1,0 +1,124 @@
+@import "../../../../../assets/styles/setup/vars";
+
+.date-range-picker {
+  .date-picker-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 2rem;
+    background-color: #fff;
+    border: 1px solid $gray-E;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    opacity: 1;
+    transition: all 0.3s;
+    border-radius: 1rem;
+    &.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .date-picker {
+      width: calc(50% - 20px);
+      min-width: 250px;
+      margin: 0 10px;
+      display: flex;
+      flex-direction: column;
+      font-family: $font-family-medium;
+      .month-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: $gray-500;
+        padding: 0 20px;
+        height: 50px;
+        font-family: $font-family-medium;
+        .prev,
+        .next {
+          cursor: pointer;
+          user-select: none;
+          font-size: 24px;
+          line-height: 1;
+          color: $primary;
+        }
+      }
+
+      .days-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        // font-weight: 600;
+        font-family: $font-family-medium;
+        color: $gray-B;
+        padding: 10px 20px;
+
+        span {
+          flex-basis: calc(100% / 7);
+          text-align: center;
+        }
+      }
+
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        grid-gap: 4px;
+        padding: 10px 20px;
+        place-items: center;
+
+        .day {
+          font-family: $font-family-medium;
+          width: calc((100% / 7));
+          height: 45px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          transition: background-color 0.3s ease-in-out;
+          border-radius: 55px;
+          background-color: transparent;
+          cursor: pointer;
+          //   color: $gray-E;
+          position: relative;
+          z-index: 1;
+          &::before {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 55px;
+            width: 45px;
+            height: 45px;
+          }
+
+          &.empty {
+            opacity: 0.5;
+            cursor: default;
+          }
+
+          &.active {
+            color: #fff;
+            &::before {
+              background-color: #222;
+            }
+          }
+
+          &.in-range:not(.active) {
+            &::before {
+              background-color: $gray-E;
+            }
+          }
+        }
+      }
+    }
+  }
+}

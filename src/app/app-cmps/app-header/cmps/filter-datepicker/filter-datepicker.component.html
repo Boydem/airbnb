@@ -1,22 +1,89 @@
 <div
-  [class.active]="activeModule === 'date-check-in'"
-  (click)="onChangeModule('date-check-in')"
+  [class.active]="activeModule === 'start-date'"
+  (click)="onChangeModule('start-date')"
   class="filter-module"
 >
   <h5 class="filter-title">Check in</h5>
-  <h4 class="filter-selection">Mar 2</h4>
+  <input
+    class="filter-selection"
+    type="text"
+    disabled="true"
+    [ngModel]="startDate | date : 'MMM d'"
+    placeholder="Start date"
+  />
   <button class="filter-reset-btn">
     <fa-icon size="xs" [icon]="faX"></fa-icon>
   </button>
 </div>
 <div
-  [class.active]="activeModule === 'date-check-out'"
-  (click)="onChangeModule('date-check-out')"
+  [class.active]="activeModule === 'end-date'"
+  (click)="onChangeModule('end-date')"
   class="filter-module"
 >
   <h5 class="filter-title">Check out</h5>
-  <h4 class="filter-selection">Mar 10</h4>
+  <input
+    class="filter-selection"
+    type="text"
+    disabled="true"
+    [ngModel]="endDate | date : 'MMM d'"
+    placeholder="End date"
+  />
   <button class="filter-reset-btn">
     <fa-icon size="xs" [icon]="faX"></fa-icon>
   </button>
+</div>
+<div
+  *ngIf="activeModule === 'start-date' || activeModule === 'end-date'"
+  class="date-range-picker"
+>
+  <div class="date-picker-container">
+    <div class="date-picker">
+      <div class="month-header">
+        <span class="prev" (click)="previousMonth(false)">&#8249;</span>
+        {{ months[startMonth] }} {{ startYear }}
+        <span></span>
+      </div>
+      <div class="days-header">
+        <span *ngFor="let day of days">{{ day }}</span>
+      </div>
+      <div class="days">
+        <span
+          *ngFor="let day of startMonthDays; let i = index"
+          class="day"
+          [class.empty]="day.day === null"
+          [class.active]="i === selectedStartDate.getDate() - 1"
+          [class.in-range]="
+            isInRange(i + 1, startMonth, startYear, endMonth, endYear)
+          "
+          (click)="selectDate(i + 1, true)"
+        >
+          {{ day.day === null || day.day === 0 ? "" : day.day }}
+        </span>
+      </div>
+    </div>
+    <div class="date-picker">
+      <div class="month-header">
+        <span></span>
+        {{ months[endMonth] }} {{ endYear }}
+        <span class="next" (click)="nextMonth(true)">&#8250;</span>
+      </div>
+      <div class="days-header">
+        <span *ngFor="let day of days">{{ day }}</span>
+      </div>
+      <div class="days">
+        <span
+          *ngFor="let day of endMonthDays; let i = index"
+          class="day"
+          [class.empty]="day.day === null"
+          [class.active]="i === selectedEndDate.getDate() - 1"
+          [class.in-range]="
+            isInRange(i + 1, startMonth, startYear, endMonth, endYear)
+          "
+          (click)="selectDate(i + 1, false)"
+        >
+          {{ day.day === null || day.day === 0 ? "" : day.day }}
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
