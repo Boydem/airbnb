@@ -1,13 +1,19 @@
-<form class="filter-form">
+<form [class.active]="activeModule" class="filter-form">
   <filter-location
+    [class.active]="activeModule === 'location'"
     class="filter-module"
-    (click)="onChangeActiveModule('location')"
+    (click)="onChangeModule('location')"
   ></filter-location>
+
   <filter-datepicker></filter-datepicker>
-  <div class="filter-group filter-module">
+
+  <div
+    [class.active]="activeModule === 'guests'"
+    class="filter-group filter-module"
+  >
     <filter-guests
-      class="filter-module"
-      (click)="onChangeActiveModule('guests')"
+      class="filter-module guests"
+      (click)="onChangeModule('guests')"
     ></filter-guests>
     <button class="search-btn">
       <fa-icon [icon]="faSearch"></fa-icon>

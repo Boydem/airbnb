@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FilterBy } from 'src/app/models/filter';
 
@@ -10,4 +10,10 @@ import { FilterBy } from 'src/app/models/filter';
 export class SearchTeaserComponent {
   faSearch = faSearch;
   @Input() filterBy!: FilterBy;
+  @Input() activeModule!: string | null;
+  @Output() changeModule = new EventEmitter<string>();
+
+  onChangeModule(module: string) {
+    this.changeModule.emit(module);
+  }
 }

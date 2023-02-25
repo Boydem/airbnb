@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FilterBy } from 'src/app/models/filter';
 
@@ -9,11 +9,12 @@ import { FilterBy } from 'src/app/models/filter';
 })
 export class SearchExpandedComponent implements OnInit {
   faSearch = faSearch;
-  activeModule: string | null = null;
   @Input() filterBy!: FilterBy;
-  onChangeActiveModule(module: string) {
-    console.log('module:', module);
-    this.activeModule = module;
+  @Input() activeModule!: string | null;
+  @Output() changeModule = new EventEmitter<string>();
+
+  onChangeModule(module: string) {
+    this.changeModule.emit(module);
   }
   ngOnInit(): void {
     console.log('this.filterBy:', this.filterBy);

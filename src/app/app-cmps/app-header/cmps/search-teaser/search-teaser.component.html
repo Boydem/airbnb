@@ -1,7 +1,11 @@
 <section class="search-teaser">
-  <button class="divider font-medium">Anywhere</button>
-  <button class="divider font-medium">Any week</button>
-  <button>Add guests</button>
+  <button (click)="onChangeModule('location')" class="divider font-medium">
+    Anywhere
+  </button>
+  <button (click)="onChangeModule('datepicker')" class="divider font-medium">
+    Any week
+  </button>
+  <button (click)="onChangeModule('guests')">Add guests</button>
   <button class="search-btn small btn-icon primary circled">
     <fa-icon size="sm" [icon]="faSearch"></fa-icon>
   </button>

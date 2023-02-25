@@ -40,6 +40,10 @@ search-expanded {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 100px;
+    &.active {
+      background-color: $gray-E;
+    }
     filter-datepicker {
       display: flex;
       flex: 1;
@@ -104,10 +108,12 @@ search-expanded {
         align-items: center;
         justify-content: center;
       }
-      &:hover:not(.active) {
+      &:hover:not(.active, .guests) {
         background-color: #e0e0e0;
       }
       &.active {
+        background-color: #fff;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
       }
       &:not(.filter-group) {
         padding: 0 1rem 0 2rem;

@@ -1,5 +1,5 @@
 import { Observable, Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FilterBy } from 'src/app/models/filter';
 import { StayService } from 'src/app/services/stay.service';
 
@@ -8,10 +8,11 @@ import { StayService } from 'src/app/services/stay.service';
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
 })
-export class AppHeaderComponent implements OnInit {
+export class AppHeaderComponent implements OnInit, OnDestroy {
   constructor(private stayService: StayService) {}
   isExpanded: boolean = false;
   filterBy!: FilterBy;
+  activeModule: string | null = null;
 
   subscription!: Subscription;
 
@@ -21,6 +22,11 @@ export class AppHeaderComponent implements OnInit {
       this.filterBy = filterBy;
     });
   }
+
+  changeModule(module: string) {
+    this.activeModule = module;
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

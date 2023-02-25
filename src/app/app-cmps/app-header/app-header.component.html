@@ -7,6 +7,8 @@
   <div class="content-wrapper flex align-center justify-between">
     <app-logo></app-logo>
     <search-teaser
+      (changeModule)="changeModule($event)"
+      [activeModule]="activeModule"
       [class.is-expanded]="isExpanded"
       [filterBy]="filterBy"
       (click)="isExpanded = true"
@@ -14,8 +16,10 @@
     <user-menu></user-menu>
   </div>
   <search-expanded
+    (changeModule)="changeModule($event)"
     class="full"
     [filterBy]="filterBy"
     [class.is-expanded]="isExpanded"
+    [activeModule]="activeModule"
   ></search-expanded>
 </header>
