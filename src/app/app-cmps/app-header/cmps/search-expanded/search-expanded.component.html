@@ -1,1 +1,16 @@
-<p>search-expanded works!</p>
+<form class="filter-form">
+  <filter-location
+    class="filter-module"
+    (click)="onChangeActiveModule('location')"
+  ></filter-location>
+  <filter-datepicker></filter-datepicker>
+  <div class="filter-group filter-module">
+    <filter-guests
+      class="filter-module"
+      (click)="onChangeActiveModule('guests')"
+    ></filter-guests>
+    <button class="search-btn">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </div>
+</form>

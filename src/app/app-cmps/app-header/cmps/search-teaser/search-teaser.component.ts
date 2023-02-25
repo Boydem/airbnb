@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FilterBy } from 'src/app/models/filter';
 
 @Component({
   selector: 'search-teaser',
@@ -8,4 +9,5 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 })
 export class SearchTeaserComponent {
   faSearch = faSearch;
+  @Input() filterBy!: FilterBy;
 }

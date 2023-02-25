@@ -6,8 +6,16 @@
 <header class="app-header main-layout" [class.expanded]="isExpanded">
   <div class="content-wrapper flex align-center justify-between">
     <app-logo></app-logo>
-    <search-teaser (click)="isExpanded = true"></search-teaser>
+    <search-teaser
+      [class.is-expanded]="isExpanded"
+      [filterBy]="filterBy"
+      (click)="isExpanded = true"
+    ></search-teaser>
     <user-menu></user-menu>
   </div>
-  <search-expanded *ngIf="isExpanded"></search-expanded>
+  <search-expanded
+    class="full"
+    [filterBy]="filterBy"
+    [class.is-expanded]="isExpanded"
+  ></search-expanded>
 </header>

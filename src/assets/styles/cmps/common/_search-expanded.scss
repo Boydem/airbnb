@@ -1,0 +1,117 @@
+search-teaser {
+  opacity: 1;
+  transition: all 0.3s ease;
+  transform: translateY(0%) scale(1);
+  &.is-expanded {
+    transform: translateY(calc(100% + 66px)) scale(1.5);
+    opacity: 0;
+    pointer-events: all;
+  }
+}
+
+search-expanded {
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0%) scale(0.25);
+  width: 100%;
+  border-radius: 100px;
+  border-radius: 1px solid $gray-D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 850px;
+  margin: 0 auto;
+  border: 1px solid $gray-E;
+
+  background-color: #fff;
+  //   box-shadow: inset 0px 0px 0px 1px #d0d0d0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+  &.is-expanded {
+    transform: translate(-50%, 100%) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .filter-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter-datepicker {
+      display: flex;
+      flex: 1;
+    }
+    .filter-module {
+      height: 66px;
+      border-radius: 155px;
+      flex: 1;
+      white-space: nowrap;
+      width: 100%;
+      display: grid;
+      align-items: center;
+      place-content: center;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "filterTitle btn"
+        "filterSelection btn";
+      .filter-title {
+        grid-area: filterTitle;
+        font-size: 12px;
+      }
+      .filter-selection {
+        grid-area: filterSelection;
+        font-size: 14px;
+        &[type="text"] {
+          border: 0;
+          background-color: transparent;
+          border-radius: 55px;
+          &:focus-within {
+            border: 0;
+            outline: 0;
+          }
+        }
+      }
+      .filter-reset-btn,
+      .search-btn {
+        grid-area: btn;
+        border-radius: 155px;
+        border: 0;
+      }
+      .filter-reset-btn {
+        background-color: $gray-D;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        &.shown {
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+      .search-btn {
+        margin-inline-end: 1rem;
+        background: $primary;
+        color: #fff;
+        height: 3rem;
+        width: 3rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      &:hover:not(.active) {
+        background-color: #e0e0e0;
+      }
+      &.active {
+      }
+      &:not(.filter-group) {
+        padding: 0 1rem 0 2rem;
+      }
+    }
+  }
+}
