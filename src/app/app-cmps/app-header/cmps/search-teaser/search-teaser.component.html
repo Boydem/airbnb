@@ -1,12 +1,12 @@
 <section class="search-teaser">
-  <button (click)="onChangeModule('location')" class="divider font-medium">
-    Anywhere
+  <button (click)="onChangeModule('location')">
+    <span class="divider font-medium"> Anywhere </span>
   </button>
   <button (click)="onChangeModule('date-check-in')" class="divider font-medium">
-    Any week
+    <span class="divider font-medium"> Any week </span>
   </button>
   <button (click)="onChangeModule('guests')">Add guests</button>
   <button class="search-btn small btn-icon primary circled">
-    <fa-icon size="sm" [icon]="faSearch"></fa-icon>
+    <fa-icon size="lg" [icon]="faSearch"></fa-icon>
   </button>
 </section>
