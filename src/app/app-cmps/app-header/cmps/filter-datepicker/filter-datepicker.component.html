@@ -8,7 +8,7 @@
     class="filter-selection"
     type="text"
     disabled="true"
-    [ngModel]="startDate | date : 'MMM d'"
+    [ngModel]="selectedStartDate | date : 'MMM d'"
     placeholder="Start date"
   />
   <button class="filter-reset-btn">
@@ -25,7 +25,7 @@
     class="filter-selection"
     type="text"
     disabled="true"
-    [ngModel]="endDate | date : 'MMM d'"
+    [ngModel]="selectedEndDate | date : 'MMM d'"
     placeholder="End date"
   />
   <button class="filter-reset-btn">
@@ -51,13 +51,14 @@
           *ngFor="let day of startMonthDays; let i = index"
           class="day"
           [ngClass]="{
-            empty: day.day === null,
-            active: isDayActive(day.day, startMonth, startYear),
-            'in-range': isDayInRange(day.day, startMonth, startYear)
+            disabled: day,
+            empty: day === null,
+            active: isDayActive(day, startMonth, startYear),
+            'in-range': isDayInRange(day, startMonth, startYear)
           }"
-          (click)="selectDate(day.day, startMonth, startYear)"
+          (click)="selectDate(day, startMonth, startYear)"
         >
-          {{ day.day === null || day.day === 0 ? "" : day.day }}
+          {{ day === null || day === 0 ? "" : day }}
         </span>
       </div>
     </div>
@@ -75,13 +76,13 @@
           *ngFor="let day of endMonthDays; let i = index"
           class="day"
           [ngClass]="{
-            empty: day.day === null,
-            active: isDayActive(day.day, endMonth, endYear),
-            'in-range': isDayInRange(day.day, endMonth, endYear)
+            empty: day === null,
+            active: isDayActive(day, endMonth, endYear),
+            'in-range': isDayInRange(day, endMonth, endYear)
           }"
-          (click)="selectDate(day.day, endMonth, endYear)"
+          (click)="selectDate(day, endMonth, endYear)"
         >
-          {{ day.day === null || day.day === 0 ? "" : day.day }}
+          {{ day === null || day === 0 ? "" : day }}
         </span>
       </div>
     </div>

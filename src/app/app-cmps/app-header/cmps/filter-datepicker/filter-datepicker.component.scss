@@ -102,6 +102,11 @@
             opacity: 0.5;
             cursor: default;
           }
+          &:hover {
+            &::before {
+              border: 1px solid $base-text-color;
+            }
+          }
 
           &.active {
             color: #fff;

@@ -35,6 +35,8 @@ export class StayService {
       children: 0,
       infants: 0,
       pets: 0,
+      startDate: null,
+      endDate: null,
     };
   }
 }

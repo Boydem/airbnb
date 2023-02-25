@@ -8,6 +8,8 @@
   <filter-datepicker
     [activeModule]="activeModule"
     (changeModule)="onChangeModule($event)"
+    [startDate]="filterBy['startDate'] || null"
+    [endDate]="filterBy['endDate'] || null"
   ></filter-datepicker>
 
   <div
