@@ -1,5 +1,19 @@
 <h5 class="filter-title">Where</h5>
-<input class="filter-selection" type="text" name="location" id="location" />
+<input
+  class="filter-selection"
+  type="text"
+  name="location"
+  id="location"
+  placeholder="Search destination"
+  [(ngModel)]="selectedDestination"
+/>
 <button class="filter-reset-btn">
   <fa-icon size="xs" [icon]="faX"></fa-icon>
 </button>
+
+<div
+  *ngIf="activeModule === 'location'"
+  class="sided-filter-extention left location-picker"
+>
+  blaa
+</div>

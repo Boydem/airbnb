@@ -1,5 +1,7 @@
 <form [class.active]="activeModule" class="filter-form">
   <filter-location
+    [activeModule]="activeModule"
+    (changeModule)="onChangeModule($event)"
     [class.active]="activeModule === 'location'"
     class="filter-module"
     (click)="onChangeModule('location')"
@@ -17,6 +19,8 @@
     class="filter-group filter-module"
   >
     <filter-guests
+      [activeModule]="activeModule"
+      (changeModule)="onChangeModule($event)"
       class="filter-module guests"
       (click)="onChangeModule('guests')"
     ></filter-guests>

@@ -67,7 +67,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-template-rows: repeat(5, 1fr);
-        grid-gap: 4px;
+        grid-gap: 4px 0px;
         padding: 10px 20px;
         place-items: center;
 
@@ -120,8 +120,10 @@
             }
           }
 
-          &.in-range:not(.active) {
+          &.in-range:not(.active, :hover) {
             &::before {
+              width: 48px;
+              border-radius: 0;
               background-color: $gray-E;
             }
           }

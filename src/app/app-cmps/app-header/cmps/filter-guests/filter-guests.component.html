@@ -3,3 +3,10 @@
 <button class="filter-reset-btn">
   <fa-icon size="xs" [icon]="faX"></fa-icon>
 </button>
+
+<div
+  *ngIf="activeModule === 'guests'"
+  class="sided-filter-extention right guests-picker"
+>
+  guests
+</div>

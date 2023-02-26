@@ -22,7 +22,7 @@ search-expanded {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 850px;
+  max-width: 890px;
   margin: 0 auto;
   border: 1px solid $gray-E;
 
@@ -39,6 +39,7 @@ search-expanded {
   }
 
   .filter-form {
+    position: relative;
     width: 100%;
     display: flex;
     align-items: center;
@@ -121,6 +122,27 @@ search-expanded {
       &:not(.filter-group) {
         padding: 0 1rem 0 2rem;
       }
+    }
+  }
+
+  .sided-filter-extention {
+    position: absolute;
+    width: 50%;
+    display: flex;
+    bottom: -0.5rem;
+    background-color: #fff;
+    padding: 3rem 2rem;
+    transform: translateY(100%);
+    border-radius: 2rem;
+    z-index: 9;
+    height: 100%;
+    min-height: calc(100vh - 320px);
+    max-height: calc(100vh - 320px);
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right: 0;
     }
   }
 }

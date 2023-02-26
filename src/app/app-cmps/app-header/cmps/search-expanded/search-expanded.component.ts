@@ -14,6 +14,7 @@ export class SearchExpandedComponent implements OnInit {
   @Output() changeModule = new EventEmitter<string>();
 
   onChangeModule(module: string) {
+    if (this.activeModule === module) return;
     this.changeModule.emit(module);
   }
   ngOnInit(): void {

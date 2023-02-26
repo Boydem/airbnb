@@ -18,7 +18,6 @@ export class FilterDatepickerComponent implements OnInit {
   @Input() startDate!: Date | null;
   @Input() endDate!: Date | null;
 
-  selectedFirstDate!: Date | null;
   selectedStartDate!: Date | null;
   selectedEndDate!: Date | null;
 
@@ -58,6 +57,56 @@ export class FilterDatepickerComponent implements OnInit {
   ngOnInit(): void {
     this.selectedStartDate = this.startDate || null;
     this.selectedEndDate = this.endDate || null;
+  }
+
+  hoverDate(day: number, month: number, year: number) {
+    if (!this.selectedStartDate || this.selectedEndDate) return;
+    console.log('hover:');
+    const currentDate = new Date();
+    const selectedDate = new Date(year, month, day);
+
+    if (
+      selectedDate >= currentDate &&
+      this.selectedStartDate &&
+      selectedDate > this.selectedStartDate
+    ) {
+      this.startMonthDays.forEach((_, index) => {
+        const startDate = new Date(year, month, index + 1);
+        if (
+          this.selectedStartDate &&
+          startDate > this.selectedStartDate &&
+          startDate <= selectedDate
+        ) {
+          const dayEl = document.getElementById(`start-day-${index}`);
+          if (dayEl) {
+            dayEl.classList.add('in-range');
+          }
+        }
+      });
+
+      this.endMonthDays.forEach((_, index) => {
+        const endDate = new Date(year, month, index + 1);
+        if (
+          this.selectedStartDate &&
+          endDate > this.selectedStartDate &&
+          endDate <= selectedDate
+        ) {
+          const dayEl = document.getElementById(`end-day-${index}`);
+          if (dayEl) {
+            dayEl.classList.add('in-range');
+          }
+        }
+      });
+    }
+  }
+
+  unHoverDate() {
+    if (this.selectedEndDate || !this.selectedStartDate) return;
+    console.log('unhover:');
+    const inRangeElements = document.querySelectorAll('.in-range');
+    inRangeElements.forEach((element) => {
+      element.classList.remove('in-range');
+    });
   }
 
   handleChange() {}
@@ -122,7 +171,7 @@ export class FilterDatepickerComponent implements OnInit {
     const date = new Date(year, month, day);
     if (
       this.activeModule === 'start-date' &&
-      this.selectedEndDate !== null &&
+      this.selectedEndDate &&
       date < this.selectedEndDate
     ) {
       this.onChangeModule('end-date');
@@ -131,15 +180,21 @@ export class FilterDatepickerComponent implements OnInit {
       this.onChangeModule('end-date');
       this.selectedStartDate = date;
       this.selectedEndDate = null;
-    } else if (
-      this.activeModule === 'end-date' &&
-      this.selectedStartDate !== null &&
-      date < this.selectedStartDate
-    ) {
+    } else if (this.activeModule === 'end-date' && !this.selectedStartDate) {
+      this.onChangeModule('start-date');
+      this.selectedEndDate = date;
+    } else if (this.selectedStartDate && date < this.selectedStartDate) {
       this.selectedStartDate = date;
     } else {
       this.selectedEndDate = date;
       this.updateDateRange(); // <-- call updateDateRange() here
+    }
+
+    // Add or remove hover classes depending on selected dates
+    if (this.selectedStartDate && !this.selectedEndDate) {
+      this.hoverDate(day, month, year);
+    } else {
+      this.unHoverDate();
     }
   }
 

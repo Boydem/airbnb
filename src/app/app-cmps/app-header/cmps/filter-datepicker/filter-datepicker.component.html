@@ -57,6 +57,9 @@
             'in-range': isDayInRange(day, startMonth, startYear)
           }"
           (click)="selectDate(day, startMonth, startYear)"
+          [attr.id]="'start-day-' + i"
+          (mouseover)="hoverDate(day, startMonth, startYear)"
+          (mouseleave)="unHoverDate()"
         >
           {{ day === null || day === 0 ? "" : day }}
         </span>
@@ -82,6 +85,9 @@
             'in-range': isDayInRange(day, endMonth, endYear)
           }"
           (click)="selectDate(day, endMonth, endYear)"
+          [attr.id]="'end-day-' + i"
+          (mouseover)="hoverDate(day, endMonth, endYear)"
+          (mouseleave)="unHoverDate()"
         >
           {{ day === null || day === 0 ? "" : day }}
         </span>
