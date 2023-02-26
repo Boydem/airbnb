@@ -8,5 +8,29 @@
   *ngIf="activeModule === 'guests'"
   class="sided-filter-extention right guests-picker"
 >
-  guests
+  <ul class="counters clean-list">
+    <li *ngFor="let counter of counters; let i = index" class="counter-group">
+      <div class="guests-subject">
+        <h3 class="subject">{{ counter.subject }}</h3>
+        <p class="description">{{ counter.description }}</p>
+      </div>
+      <div class="counter">
+        <button
+          [disabled]="counter.count === 0"
+          (click)="onCounterChange(false, i)"
+          class="btn-minus"
+        >
+          <fa-icon [icon]="faMinus"></fa-icon>
+        </button>
+        <span class="count">{{ counter.count }}</span>
+        <button
+          [disabled]="counter.count === 10"
+          (click)="onCounterChange(true, i)"
+          class="btn-plus"
+        >
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </button>
+      </div>
+    </li>
+  </ul>
 </div>

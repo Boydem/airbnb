@@ -24,6 +24,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
   }
 
   changeModule(module: string) {
+    if (this.activeModule === module) return;
     this.activeModule = module;
   }
 

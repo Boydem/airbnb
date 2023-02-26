@@ -1,2 +1,62 @@
+@import "../../../../../assets/styles/setup/vars";
 .guests-picker {
+}
+.counters {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+
+  .counter-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-D;
+      padding-bottom: 1rem;
+    }
+    .guests-subject {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      .subject {
+        font-size: 16px;
+      }
+      .description {
+        font-size: 14px;
+        color: $gray-700;
+      }
+    }
+    .counter {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      //   buttons
+      .arrow-right {
+        right: 20px;
+      }
+      .arrow-left {
+        left: 20px;
+      }
+      button {
+        background-color: rgba(255, 255, 255, 0.9);
+        cursor: pointer;
+        width: 2rem;
+        height: 2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 55px;
+        border: 1px solid $gray-D;
+        transition: transform 0.25s ease;
+        &:hover {
+          background-color: #fff;
+          border: 1px solid $gray-300;
+        }
+        &:active {
+          background-color: #fff;
+        }
+      }
+    }
+  }
 }

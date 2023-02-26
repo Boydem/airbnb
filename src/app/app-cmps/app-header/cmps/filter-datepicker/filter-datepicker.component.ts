@@ -202,6 +202,7 @@ export class FilterDatepickerComponent implements OnInit {
     if (this.selectedStartDate && this.selectedEndDate) {
       this.startDate = this.selectedStartDate;
       this.endDate = this.selectedEndDate;
+      this.onChangeModule('guests');
     }
   }
 

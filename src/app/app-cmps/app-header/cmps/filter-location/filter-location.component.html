@@ -5,7 +5,8 @@
   name="location"
   id="location"
   placeholder="Search destination"
-  [(ngModel)]="selectedDestination"
+  [(ngModel)]="typedDestination"
+  [value]="typedDestination || selectedDestination"
 />
 <button class="filter-reset-btn">
   <fa-icon size="xs" [icon]="faX"></fa-icon>
@@ -15,5 +16,18 @@
   *ngIf="activeModule === 'location'"
   class="sided-filter-extention left location-picker"
 >
-  blaa
+  <div
+    *ngIf="typedDestination === '' || !typedDestination"
+    class="regions-container"
+  >
+    <div *ngFor="let region of regions" class="region">
+      <img
+        [class.active]="selectedDestination === region.label"
+        (click)="onRegionClick($event, region.label)"
+        [src]="region.img"
+        [alt]="region.label"
+      />
+      <p>{{ region.label }}</p>
+    </div>
+  </div>
 </div>
