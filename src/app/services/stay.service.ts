@@ -4,21 +4,21 @@ import {
   Observable,
   BehaviorSubject,
   of,
+  map,
   throwError,
 } from 'rxjs';
 import { Stay, StayPreview } from '../models/stay';
 
-import STAY_DB from '../data/minified-stays.json';
-import FILTERS_DB from '../data/filters.json';
 import { Filter, FilterBy } from '../models/filter';
 import { Review } from '../models/review';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class StayService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  private _stays$ = new BehaviorSubject<StayPreview[]>([]);
+  private _stays$ = new BehaviorSubject<Stay[]>([]);
   public stays$ = this._stays$.asObservable();
 
   private _filters$ = new BehaviorSubject<Filter[]>([]);
@@ -28,18 +28,30 @@ export class StayService {
   public filterBy$ = this._filterBy$.asObservable();
 
   public loadStays() {
-    const filteredStays = this._filter(STAY_DB);
-    const staysForPreview = filteredStays.map((stay) => ({
-      name: stay.name,
-      price: stay.price,
-      imgUrls: stay.imgUrls,
-      isSuperHost: stay.host.isSuperHost,
-      loc: stay.loc,
-      avgRate: this._calcAvgRate(stay.reviews),
-      type: stay.type,
-      // likedByUser:stay.likedByUsers.findIndex(s=>this.userService.getLoggedInUser().id === s),
-    }));
-    this._stays$.next(staysForPreview);
+    this.http
+      .get<Stay[]>('../../assets/data/minified-stays.json')
+      .subscribe((stays) => {
+        this._stays$.next(stays);
+      });
+  }
+
+  public getStayPreviews(): Observable<StayPreview[]> {
+    return this._stays$.pipe(
+      map((stays) => {
+        const filteredStays = this._filter(stays);
+        const staysForPreview = filteredStays.map((stay) => ({
+          name: stay.name,
+          price: stay.price,
+          imgUrls: stay.imgUrls,
+          isSuperHost: stay.host.isSuperHost,
+          loc: stay.loc,
+          avgRate: this._calcAvgRate(stay.reviews),
+          type: stay.type,
+          // likedByUser:stay.likedByUsers.findIndex(s=>this.userService.getLoggedInUser().id === s),
+        }));
+        return staysForPreview;
+      })
+    );
   }
 
   public setFilter(filterBy: FilterBy) {
@@ -72,7 +84,11 @@ export class StayService {
   }
 
   public loadFilters(): void {
-    this._filters$.next(FILTERS_DB);
+    this.http
+      .get<Filter[]>('../../assets/data/filters.json')
+      .subscribe((filters) => {
+        this._filters$.next(filters);
+      });
   }
 
   public getEmptyFilterBy() {

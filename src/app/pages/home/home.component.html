@@ -7,7 +7,7 @@
   <stay-list-map [stays]="stays$ | async"></stay-list-map>
 </ng-template>
 
-<button (click)="listViewMode = !listViewMode">
-  <fa-icon [icon]="listViewMode ? faMap : faList"></fa-icon>
+<button class="view-toggle-btn" (click)="listViewMode = !listViewMode">
   {{ listViewMode ? "Show Map" : "Show List" }}
+  <fa-icon [icon]="listViewMode ? faMap : faList"></fa-icon>
 </button>
