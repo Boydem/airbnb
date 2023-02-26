@@ -5,7 +5,7 @@ search-teaser {
   pointer-events: all;
   &.is-expanded {
     transition: all 0.2s ease-in-out;
-    transform: translateY(100%) scale(1.5);
+    transform: translateY(calc(100% + 2rem)) scale(1.25);
     opacity: 0;
     pointer-events: none;
   }
@@ -15,7 +15,7 @@ search-expanded {
   position: absolute;
   bottom: -0.5rem;
   left: 50%;
-  transform: translate(-50%, 0%) scale(0.25);
+  transform: translate(-50%, -2rem) scale(0.25);
   max-width: 70%;
   margin: 0 auto;
   transition: all 0.2s ease-in-out;
@@ -59,14 +59,24 @@ search-expanded {
       .filter-title {
         grid-area: filterTitle;
         font-size: 12px;
+        font-family: $font-family-medium;
       }
       .filter-selection {
         grid-area: filterSelection;
         font-size: 14px;
+        font-family: $font-family-medium;
+        &.unselected {
+          color: $gray-700;
+          font-family: $base-font-family;
+        }
         &[type="text"] {
           border: 0;
           background-color: transparent;
           border-radius: 55px;
+          &::placeholder {
+            font-family: $base-font-family;
+            color: $gray-700;
+          }
           &:focus-within {
             border: 0;
             outline: 0;

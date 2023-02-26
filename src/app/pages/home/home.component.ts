@@ -15,7 +15,7 @@ import { FilterBy } from 'src/app/models/filter';
 export class HomeComponent implements OnInit {
   constructor(private stayService: StayService) {}
   listViewMode: boolean = true;
-  stays$!: Observable<StayPreview[]>;
+  stays$!: Observable<StayPreview[]> | undefined;
 
   faMap = faMap;
   faList = faList;

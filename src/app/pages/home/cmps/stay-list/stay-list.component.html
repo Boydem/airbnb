@@ -1,5 +1,5 @@
-<ul class="stay-list clean-list">
-  <li *ngFor="let stay of stays">
+<ul *ngIf="{ stays: stays$ | async } as vm" class="stay-list clean-list">
+  <li *ngFor="let stay of vm.stays || getSkeletonArray()">
     <stay-preview [stay]="stay"></stay-preview>
   </li>
 </ul>

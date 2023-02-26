@@ -1,4 +1,4 @@
-<article class="stay-preview">
+<article *ngIf="stay && isLoaded; else skeleton" class="stay-preview">
   <img-carousel [imgUrls]="stay.imgUrls"></img-carousel>
   <section class="meta">
     <p class="rate">
@@ -13,3 +13,17 @@
     </p>
   </section>
 </article>
+
+<ng-template #skeleton>
+  <article [class.hide]="stay" class="skeleton-preview" #skeletonPreview>
+    <div class="img-skeleton"></div>
+    <section class="meta">
+      <div class="group flex align-center">
+        <div class="skeleton icon-skeleton"></div>
+        <div class="skeleton label-skeleton"></div>
+      </div>
+      <div class="skeleton text-skeleton"></div>
+      <div class="skeleton text-skeleton"></div>
+    </section>
+  </article>
+</ng-template>

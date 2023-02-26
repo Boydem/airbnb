@@ -5,6 +5,7 @@ import {
   BehaviorSubject,
   of,
   map,
+  delay,
   throwError,
 } from 'rxjs';
 import { Stay, StayPreview } from '../models/stay';
@@ -50,7 +51,8 @@ export class StayService {
           // likedByUser:stay.likedByUsers.findIndex(s=>this.userService.getLoggedInUser().id === s),
         }));
         return staysForPreview;
-      })
+      }),
+      delay(2000)
     );
   }
 

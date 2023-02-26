@@ -1,5 +1,5 @@
 <h5 class="filter-title">Who</h5>
-<p class="filter-selection">
+<p class="filter-selection" [class.unselected]="totalGuests === 0">
   {{ totalGuests ? totalGuests + " guests" : "Add guests" }}
 </p>
 <button class="filter-reset-btn">

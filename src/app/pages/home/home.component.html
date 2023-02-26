@@ -1,8 +1,11 @@
 <filters-bar></filters-bar>
 
-<ng-container *ngIf="listViewMode; else mapMode">
-  <stay-list [stays]="stays$ | async"></stay-list>
-</ng-container>
+<stay-list
+  *ngIf="listViewMode; else mapMode"
+  [stays$]="stays$"
+  [numSkeletons]="20"
+></stay-list>
+
 <ng-template #mapMode>
   <stay-list-map [stays]="stays$ | async"></stay-list-map>
 </ng-template>
