@@ -1,7 +1,10 @@
 <article class="stay-preview">
   <img-carousel [imgUrls]="stay.imgUrls"></img-carousel>
   <section class="meta">
-    <p class="rate"><fa-icon size="xs" [icon]="faStar"></fa-icon> 4.5</p>
+    <p class="rate">
+      <fa-icon size="xs" [icon]="faStar"></fa-icon>
+      {{ stay.avgRate }}
+    </p>
     <p class="name font-medium inline-clamp">{{ stay.name }}</p>
     <p class="type">{{ stay.type }}</p>
     <p class="price font-medium">

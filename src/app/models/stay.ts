@@ -17,6 +17,16 @@ export interface Stay {
   labels: string[];
   stayDetails: { [key: string]: number };
 }
+export interface StayPreview {
+  name: string;
+  type: string;
+  imgUrls: string[];
+  price: number;
+  isSuperHost: boolean;
+  loc: Location;
+  avgRate: string;
+  // likedByUser: boolean;
+}
 
 interface Location {
   country: string;

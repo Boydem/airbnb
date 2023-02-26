@@ -64,6 +64,10 @@
       &::before {
       }
     }
+    &.active::after {
+      opacity: 1;
+      background-color: $gray-500;
+    }
   }
   &::after {
     content: "";

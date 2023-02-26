@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Stay } from 'src/app/models/stay';
+import { StayPreview } from 'src/app/models/stay';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'stay-preview',
@@ -8,5 +8,5 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 })
 export class StayPreviewComponent {
   faStar = faStar;
-  @Input() stay!: Stay;
+  @Input() stay!: StayPreview;
 }

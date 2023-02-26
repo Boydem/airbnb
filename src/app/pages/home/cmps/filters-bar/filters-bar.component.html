@@ -1,5 +1,12 @@
 <div class="filters">
-  <div class="filter-widget" *ngFor="let filter of filters$ | async">
+  <div
+    class="filter-widget"
+    *ngFor="let filter of filters$ | async"
+    (click)="filterBy.labels = [filter.title]; onFilterChange()"
+    [class.active]="
+      filterBy.labels.length === 1 && filterBy.labels[0] === filter.title
+    "
+  >
     <img [src]="filter.img" [alt]="filter.title" />
     <p>{{ filter.title }}</p>
   </div>

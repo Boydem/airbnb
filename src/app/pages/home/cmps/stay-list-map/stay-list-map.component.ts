@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Stay } from 'src/app/models/stay';
+import { StayPreview } from 'src/app/models/stay';
 
 @Component({
   selector: 'stay-list-map',
@@ -7,5 +7,5 @@ import { Stay } from 'src/app/models/stay';
   styleUrls: ['./stay-list-map.component.scss'],
 })
 export class StayListMapComponent {
-  @Input() stays!: Stay[] | null;
+  @Input() stays!: StayPreview[] | null;
 }
