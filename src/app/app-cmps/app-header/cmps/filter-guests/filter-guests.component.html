@@ -1,5 +1,7 @@
 <h5 class="filter-title">Who</h5>
-<h4 class="filter-selection">2 guests</h4>
+<p class="filter-selection">
+  {{ totalGuests ? totalGuests + " guests" : "Add guests" }}
+</p>
 <button class="filter-reset-btn">
   <fa-icon size="xs" [icon]="faX"></fa-icon>
 </button>

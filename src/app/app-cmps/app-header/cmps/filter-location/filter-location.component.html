@@ -20,6 +20,7 @@
     *ngIf="typedDestination === '' || !typedDestination"
     class="regions-container"
   >
+    <h4 class="title">Search by region</h4>
     <div *ngFor="let region of regions" class="region">
       <img
         [class.active]="selectedDestination === region.label"

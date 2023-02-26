@@ -16,18 +16,8 @@ search-expanded {
   bottom: -0.5rem;
   left: 50%;
   transform: translate(-50%, 0%) scale(0.25);
-  width: 100%;
-  border-radius: 100px;
-  border-radius: 1px solid $gray-D;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 890px;
+  max-width: 70%;
   margin: 0 auto;
-  border: 1px solid $gray-E;
-
-  background-color: #fff;
-  //   box-shadow: inset 0px 0px 0px 1px #d0d0d0;
   transition: all 0.25s ease-in-out;
   opacity: 0;
   pointer-events: none;
@@ -40,11 +30,11 @@ search-expanded {
 
   .filter-form {
     position: relative;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100px;
+    border: 1px solid $gray-E;
     &.active {
       background-color: $gray-E;
     }
@@ -58,7 +48,7 @@ search-expanded {
       border-radius: 155px;
       flex: 1;
       white-space: nowrap;
-      width: 100%;
+      max-width: 100%;
       display: grid;
       align-items: center;
       place-content: center;
@@ -99,7 +89,9 @@ search-expanded {
         justify-content: center;
         opacity: 0;
         pointer-events: none;
+        visibility: hidden;
         &.shown {
+          visibility: visible;
           opacity: 1;
           pointer-events: all;
         }
@@ -129,11 +121,12 @@ search-expanded {
 
   .sided-filter-extention {
     position: absolute;
-    width: 50%;
+    min-width: 45%;
+    max-width: 60%;
     display: flex;
     bottom: -0.5rem;
     background-color: #fff;
-    padding: 3rem 2rem;
+    padding: 2.5rem;
     transform: translateY(100%);
     border-radius: 2rem;
     z-index: 9;

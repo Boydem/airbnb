@@ -52,5 +52,6 @@ export class FilterGuestsComponent {
   onCounterChange(isIncreasing: boolean, counterIdx: number) {
     const currentCounter = this.counters[counterIdx];
     currentCounter.count += isIncreasing ? 1 : -1;
+    this.totalGuests += isIncreasing ? 1 : -1;
   }
 }
