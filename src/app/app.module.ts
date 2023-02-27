@@ -28,6 +28,7 @@ import { FilterDatepickerComponent } from './app-cmps/app-header/cmps/filter-dat
 import { SearchTeaserComponent } from './app-cmps/app-header/cmps/search-teaser/search-teaser.component';
 import { SearchExpandedComponent } from './app-cmps/app-header/cmps/search-expanded/search-expanded.component';
 import { UserMenuComponent } from './app-cmps/app-header/cmps/user-menu/user-menu.component';
+import { InfiniteScrollComponent } from './app-cmps/infinite-scroll/infinite-scroll.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { UserMenuComponent } from './app-cmps/app-header/cmps/user-menu/user-men
     UserMenuComponent,
     SearchExpandedComponent,
     OverlayScreenComponent,
+    InfiniteScrollComponent,
   ],
   imports: [
     BrowserModule,

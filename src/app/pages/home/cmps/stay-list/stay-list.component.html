@@ -1,5 +1,19 @@
-<ul *ngIf="{ stays: stays$ | async } as vm" class="stay-list clean-list">
-  <li *ngFor="let stay of vm.stays || getSkeletonArray()">
-    <stay-preview [stay]="stay"></stay-preview>
+<ul *ngIf="stays" class="stay-list clean-list">
+  <li *ngFor="let stay of stays; let i = index">
+    <stay-preview
+      (onIntersection)="handleIntersection()"
+      [isLast]="i === stays.length - 1"
+      [stay]="stay"
+    ></stay-preview>
   </li>
+
+  <ng-container *ngIf="isLoading">
+    <li *ngFor="let item of getSkeletonArray()">
+      <stay-preview></stay-preview>
+    </li>
+  </ng-container>
+
+  <!-- <ng-container *ngIf="!isLoading && (!vm.stays || vm.stays.length === 0)">
+    <li>No stays found.</li>
+  </ng-container> -->
 </ul>

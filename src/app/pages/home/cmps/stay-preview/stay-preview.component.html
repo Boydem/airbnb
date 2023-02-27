@@ -1,4 +1,4 @@
-<article *ngIf="stay && isLoaded; else skeleton" class="stay-preview">
+<article *ngIf="stay" class="stay-preview" #intersectionElement>
   <img-carousel [imgUrls]="stay.imgUrls"></img-carousel>
   <section class="meta">
     <p class="rate">
@@ -14,16 +14,19 @@
   </section>
 </article>
 
-<ng-template #skeleton>
-  <article [class.hide]="stay" class="skeleton-preview" #skeletonPreview>
-    <div class="img-skeleton"></div>
-    <section class="meta">
-      <div class="group flex align-center">
-        <div class="skeleton icon-skeleton"></div>
-        <div class="skeleton label-skeleton"></div>
-      </div>
-      <div class="skeleton text-skeleton"></div>
-      <div class="skeleton text-skeleton"></div>
-    </section>
-  </article>
-</ng-template>
+<article
+  *ngIf="!stay"
+  [class.hide]="stay"
+  class="skeleton-preview"
+  #skeletonPreview
+>
+  <div class="img-skeleton"></div>
+  <section class="meta">
+    <div class="group flex align-center">
+      <div class="skeleton icon-skeleton"></div>
+      <div class="skeleton label-skeleton"></div>
+    </div>
+    <div class="skeleton text-skeleton"></div>
+    <div class="skeleton text-skeleton"></div>
+  </section>
+</article>

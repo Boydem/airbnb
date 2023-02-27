@@ -13,10 +13,13 @@ import { Stay, StayPreview } from '../models/stay';
 import { Filter, FilterBy } from '../models/filter';
 import { Review } from '../models/review';
 import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
 export class StayService {
+  private _displayedCount = 20;
+
   constructor(private http: HttpClient) {}
 
   private _stays$ = new BehaviorSubject<Stay[]>([]);
@@ -36,21 +39,19 @@ export class StayService {
       });
   }
 
-  public getStayPreviews(): Observable<StayPreview[]> {
+  public loadMoreStays(pageIndex: number): Observable<StayPreview[]> {
+    return this.getStayPreviews(pageIndex);
+  }
+
+  public getStayPreviews(pageIndex: number = 0): Observable<StayPreview[]> {
     return this._stays$.pipe(
       map((stays) => {
         const filteredStays = this._filter(stays);
-        const staysForPreview = filteredStays.map((stay) => ({
-          name: stay.name,
-          price: stay.price,
-          imgUrls: stay.imgUrls,
-          isSuperHost: stay.host.isSuperHost,
-          loc: stay.loc,
-          avgRate: this._calcAvgRate(stay.reviews),
-          type: stay.type,
-          // likedByUser:stay.likedByUsers.findIndex(s=>this.userService.getLoggedInUser().id === s),
-        }));
-        return staysForPreview;
+        const newStays = filteredStays.slice(
+          pageIndex * this._displayedCount,
+          (pageIndex + 1) * this._displayedCount
+        );
+        return newStays.map((stay) => this._arrangePreviewData(stay));
       }),
       delay(2000)
     );
@@ -104,6 +105,18 @@ export class StayService {
       endDate: null,
       labels: [],
       guests: 0,
+    };
+  }
+
+  private _arrangePreviewData(stay: Stay): StayPreview {
+    return {
+      name: stay.name,
+      price: stay.price,
+      imgUrls: stay.imgUrls,
+      isSuperHost: stay.host.isSuperHost,
+      loc: stay.loc,
+      avgRate: this._calcAvgRate(stay.reviews),
+      type: stay.type,
     };
   }
 }
