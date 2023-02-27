@@ -1,1 +1,25 @@
-<p>stay-list-map works!</p>
+<google-map #myMap height="100vh" width="100%"></google-map>
+
+<!-- <div class="stay-list-map">
+  <agm-map [latitude]="center.lat" [longitude]="center.lng" [zoom]="zoom">
+    <agm-marker
+      *ngFor="let stay of stays"
+      [latitude]="stay.loc['lat']"
+      [longitude]="stay.loc['lng']"
+      [markerDraggable]="false"
+    >
+      <agm-info-window [disableAutoPan]="true">
+        <div class="custom-marker">
+          <div class="price">
+            <p>asd</p>
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+        </div>
+        <div class="custom-info-window">
+          <stay-preview [stay]="stay"></stay-preview>
+          your custom modal content here
+        </div>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div> -->

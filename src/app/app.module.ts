@@ -29,6 +29,8 @@ import { SearchTeaserComponent } from './app-cmps/app-header/cmps/search-teaser/
 import { SearchExpandedComponent } from './app-cmps/app-header/cmps/search-expanded/search-expanded.component';
 import { UserMenuComponent } from './app-cmps/app-header/cmps/user-menu/user-menu.component';
 import { InfiniteScrollComponent } from './app-cmps/infinite-scroll/infinite-scroll.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { MapMarkerComponent } from './app-cmps/map-marker/map-marker.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { InfiniteScrollComponent } from './app-cmps/infinite-scroll/infinite-scr
     SearchExpandedComponent,
     OverlayScreenComponent,
     InfiniteScrollComponent,
+    MapMarkerComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { InfiniteScrollComponent } from './app-cmps/infinite-scroll/infinite-scr
     ReactiveFormsModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
+    GoogleMapsModule,
   ],
   providers: [StayService],
   bootstrap: [AppComponent],

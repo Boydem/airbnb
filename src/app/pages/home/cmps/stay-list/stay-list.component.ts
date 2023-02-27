@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { StayPreview } from 'src/app/models/stay';
 import { Observable, Subscription } from 'rxjs';
 import { StayService } from 'src/app/services/stay.service';
@@ -8,22 +8,24 @@ import { StayService } from 'src/app/services/stay.service';
   templateUrl: './stay-list.component.html',
   styleUrls: ['./stay-list.component.scss'],
 })
-export class StayListComponent implements OnInit {
-  @Input() stays$!: Observable<StayPreview[]> | undefined;
-  @Input() numSkeletons: number = 0;
+export class StayListComponent implements OnInit, OnDestroy {
+  @Input() stays$!: Observable<StayPreview[]>;
+  @Input() numSkeletons: number = 20;
   pageIdx = 0;
   isLoading = true;
   stays: StayPreview[] = [];
   hasMoreData = true;
 
-  subscription!: Subscription | undefined;
+  subscription!: Subscription;
 
   constructor(private stayService: StayService) {}
 
   ngOnInit(): void {
-    this.subscription = this.stays$?.subscribe((stays) => {
+    this.subscription = this.stays$.subscribe((stays) => {
       if (stays.length) {
         this.isLoading = false;
+        this.stays = stays;
+      } else {
         this.stays = stays;
       }
     });
@@ -59,6 +61,6 @@ export class StayListComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.stayService.loadStays();
-    this.stays$ = this.stayService.getStayPreviews();
+    this.stays$ = this.stayService.stayPreviews$;
   }
 }

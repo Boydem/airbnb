@@ -1,15 +1,19 @@
 @import "../../../../../assets/styles/setup/vars";
 
 :host {
+  grid-column: 1/-1;
   position: sticky;
   top: calc(81px);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1.5rem;
-  align-items: center;
   margin: 1rem 0;
+
   background-color: #fff;
   z-index: 1;
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
 }
 
 .filters {

@@ -22,6 +22,9 @@ export class StayService {
 
   constructor(private http: HttpClient) {}
 
+  private _stayPreviews$ = new BehaviorSubject<StayPreview[]>([]);
+  public stayPreviews$ = this._stayPreviews$.asObservable();
+
   private _stays$ = new BehaviorSubject<Stay[]>([]);
   public stays$ = this._stays$.asObservable();
 
@@ -36,7 +39,17 @@ export class StayService {
       .get<Stay[]>('../../assets/data/minified-stays.json')
       .subscribe((stays) => {
         this._stays$.next(stays);
+        this.pushStayPreviews(stays);
       });
+  }
+
+  private pushStayPreviews(stays: Stay[]) {
+    const filteredStays = this._filter(stays).slice(0, this._displayedCount);
+    console.log('filteredStays:', filteredStays);
+    let stayPreviews = filteredStays.map((stay) =>
+      this._arrangePreviewData(stay)
+    );
+    this._stayPreviews$.next(stayPreviews);
   }
 
   public loadMoreStays(pageIndex: number): Observable<StayPreview[]> {
@@ -53,7 +66,7 @@ export class StayService {
         );
         return newStays.map((stay) => this._arrangePreviewData(stay));
       }),
-      delay(2000)
+      delay(350)
     );
   }
 
