@@ -65,8 +65,7 @@ export class StayService {
           (pageIndex + 1) * this._displayedCount
         );
         return newStays.map((stay) => this._arrangePreviewData(stay));
-      }),
-      delay(500)
+      })
     );
   }
 
